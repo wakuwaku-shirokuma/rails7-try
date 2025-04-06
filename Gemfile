@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.2.6'
+ruby '3.2.8'
 
 gem 'bootsnap',        '1.16.0', require: false
+gem 'devise',          '4.9.2'
 gem 'importmap-rails', '1.1.5'
 gem 'jbuilder',        '2.11.5'
 gem 'puma',            '5.6.8'
