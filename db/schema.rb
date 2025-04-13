@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_08_205129) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_13_103409) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "salesforce_id"
+    t.index ["salesforce_id"], name: "index_companies_on_salesforce_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
