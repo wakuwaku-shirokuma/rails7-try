@@ -19,9 +19,23 @@ class Auth::SalesforceController < ApplicationController
     code = params[:code]
     salesforce_oauth = SalesforceOauth.retrieve_access_token(code)
 
+    # salesforce_user_info(salesforce_oauth)
+
+    # アカウントデータ取得
+    accounts_data = SalesforceAccount.retrieve_all(
+      salesforce_oauth.instance_url,
+      salesforce_oauth.access_token
+    )
+
+    account_names = accounts_data['records'].map { |acc| acc['Name'] }
+
+    render plain: "Accounts:\n" + account_names.join("\n")
+  end
+
+  def salesforce_user_info(salesforce_oauth)
     salesforce_user_info = SalesforceUserInfo.retrieve(salesforce_oauth.access_token)
     given_name = salesforce_user_info.given_name
 
-    render plain: "given_name: #{given_name}"
+    render plain: "Instance Url: #{salesforce_oauth.instance_url},\n Access Token: #{salesforce_oauth.access_token},\ Given Name: #{given_name}"
   end
 end

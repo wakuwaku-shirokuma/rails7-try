@@ -1,5 +1,5 @@
 class SalesforceOauth
-  attr_reader :access_token
+  attr_reader :access_token, :instance_url
 
   ACCESS_TOKEN_REQUEST_ENDPONT = 'https://login.salesforce.com/services/oauth2/token'
 
@@ -31,7 +31,7 @@ class SalesforceOauth
 
       parsed_response_body = JSON.parse(response.body)
 
-      new(parsed_response_body['access_token'])
+      new(parsed_response_body['access_token'], parsed_response_body['instance_url'])
     end
 
     def client_id
@@ -48,7 +48,8 @@ class SalesforceOauth
     end
   end
 
-  def initialize(access_token)
+  def initialize(access_token, instance_url)
     @access_token = access_token
+    @instance_url = instance_url
   end
 end
