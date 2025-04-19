@@ -22,6 +22,11 @@
   //  "memory":  "4gb",
   //  "storage": "32gb"
   //},
+  
+  "runArgs": [
+    "--volume=/var/run/docker.sock:/var/run/docker.sock",
+    "--privileged"
+  ],
 
   "waitFor": "onCreateCommand",
   //"onCreateCommand": "",
