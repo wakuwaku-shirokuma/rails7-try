@@ -20,12 +20,15 @@ group :development, :test do
 end
 
 group :development do
-  gem 'irb',                 '1.10.0'
+  gem 'cssbundling-rails'
+  gem 'irb', '1.10.0'
   gem 'repl_type_completor', '0.1.2'
-  gem 'solargraph',          '0.50.0'
-  gem 'web-console',         '4.2.0'
+  gem 'solargraph', '0.50.0'
+  gem 'web-console', '4.2.0'
 end
 
+group :development do
+end
 group :test do
   gem 'capybara',                 '3.38.0'
   gem 'guard',                    '2.18.0'
