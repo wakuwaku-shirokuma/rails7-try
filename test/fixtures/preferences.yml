@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  profile: one
+  work_type: 1
+  working_hours: 1
+  min_salary: 1
+  max_salary: 1
+  tech_stack: MyString
+  start_date: 2025-04-28
+  skillset: MyText
+
+two:
+  profile: two
+  work_type: 1
+  working_hours: 1
+  min_salary: 1
+  max_salary: 1
+  tech_stack: MyString
+  start_date: 2025-04-28
+  skillset: MyText

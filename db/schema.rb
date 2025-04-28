@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_28_060510) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_28_062905) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "introduction"
@@ -53,6 +53,20 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_28_060510) do
     t.index ["company_id"], name: "index_offices_on_company_id"
   end
 
+  create_table "preferences", force: :cascade do |t|
+    t.integer "profile_id", null: false
+    t.integer "work_type"
+    t.integer "working_hours"
+    t.integer "min_salary"
+    t.integer "max_salary"
+    t.string "tech_stack"
+    t.date "start_date"
+    t.text "skillset"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["profile_id"], name: "index_preferences_on_profile_id"
+  end
+
   create_table "profiles", force: :cascade do |t|
     t.string "status"
     t.integer "office_id", null: false
@@ -88,6 +102,7 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_28_060510) do
   end
 
   add_foreign_key "offices", "companies"
+  add_foreign_key "preferences", "profiles"
   add_foreign_key "profiles", "offices"
   add_foreign_key "selections", "profiles"
 end
