@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_28_062905) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_28_081801) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "introduction"
@@ -20,13 +20,34 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_28_062905) do
     t.index ["salesforce_id"], name: "index_companies_on_salesforce_id", unique: true
   end
 
-  create_table "document_screening_phases", force: :cascade do |t|
-    t.datetime "screened_at"
-    t.string "reviewer"
+  create_table "document_screening_histories", force: :cascade do |t|
+    t.integer "document_screening_id", null: false
+    t.integer "user_id", null: false
+    t.integer "profile_id", null: false
     t.string "result"
-    t.text "note"
+    t.text "feedback"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["document_screening_id"], name: "index_document_screening_histories_on_document_screening_id"
+    t.index ["profile_id"], name: "index_document_screening_histories_on_profile_id"
+    t.index ["user_id"], name: "index_document_screening_histories_on_user_id"
+  end
+
+  create_table "document_screening_phases", force: :cascade do |t|
+    t.string "phaseable_type", null: false
+    t.integer "phaseable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["phaseable_type", "phaseable_id"], name: "index_document_screening_phases_on_phaseable"
+  end
+
+  create_table "document_screenings", force: :cascade do |t|
+    t.integer "document_screening_phase_id", null: false
+    t.integer "profile_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["document_screening_phase_id"], name: "index_document_screenings_on_document_screening_phase_id"
+    t.index ["profile_id"], name: "index_document_screenings_on_profile_id"
   end
 
   create_table "interview_phases", force: :cascade do |t|
@@ -101,6 +122,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_28_062905) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "document_screening_histories", "document_screenings"
+  add_foreign_key "document_screening_histories", "profiles"
+  add_foreign_key "document_screening_histories", "users"
+  add_foreign_key "document_screenings", "document_screening_phases"
+  add_foreign_key "document_screenings", "profiles"
   add_foreign_key "offices", "companies"
   add_foreign_key "preferences", "profiles"
   add_foreign_key "profiles", "offices"
