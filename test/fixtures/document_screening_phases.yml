@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  screened_at: 2025-04-28 01:49:29
+  reviewer: MyString
+  result: MyString
+  note: MyText
+
+two:
+  screened_at: 2025-04-28 01:49:29
+  reviewer: MyString
+  result: MyString
+  note: MyText

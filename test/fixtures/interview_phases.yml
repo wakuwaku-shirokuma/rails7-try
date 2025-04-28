@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  interview_date: 2025-04-28 01:49:30
+  interviewer: MyString
+  evaluation_score: 1
+
+two:
+  interview_date: 2025-04-28 01:49:30
+  interviewer: MyString
+  evaluation_score: 1
