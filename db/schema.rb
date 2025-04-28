@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2025_04_28_014612) do
+ActiveRecord::Schema[7.0].define(version: 2025_04_28_060510) do
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "introduction"
@@ -58,6 +58,11 @@ ActiveRecord::Schema[7.0].define(version: 2025_04_28_014612) do
     t.integer "office_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "full_name"
+    t.string "email"
+    t.string "phone_number"
+    t.date "birthdate"
+    t.string "address"
     t.index ["office_id"], name: "index_profiles_on_office_id"
   end
 
